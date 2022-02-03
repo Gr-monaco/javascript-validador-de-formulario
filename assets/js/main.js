@@ -7,18 +7,19 @@ const userUser = userForm["fuser"];
 let userNameValid = false;
 
 function start(){
-    userName.addEventListener("blur", function() {validadeName("Nome deve estar preenchido.")});
+    userName.addEventListener("blur", function() {validadeName(userName, "Nome deve estar preenchido.")});
+    userSurname.addEventListener("blur", function() {validadeName(userSurname, "Sobrenome deve estar preenchido.")})
 }
 
-function validadeName(errorText){
-    userName.value = userName.value.trim(); // Retira excesso de espaço
-    if (userName.value === ""){
-        if (!(userName.parentElement.getElementsByClassName("error-warming").length)){ //verifica se não existe erros dentro do objeto
-            addErrorText(userName.parentElement, errorText);
+function validadeName(obj, errorText){
+    obj.value = obj.value.trim(); // Retira excesso de espaço
+    if (obj.value === ""){
+        if (!(obj.parentElement.getElementsByClassName("error-warming").length)){ //verifica se não existe erros dentro do objeto
+            addErrorText(obj.parentElement, errorText);
         }
     }else{
-        if(userName.parentElement.getElementsByClassName("error-warming").length){ //Pode não remover todos os erros se por acaso for adicionado outro erro no mesmo div
-            userName.parentElement.removeChild(userName.parentElement.getElementsByClassName("error-warming")[0]); //Pega o parente e remove o elemento filho dentro da lista
+        if(obj.parentElement.getElementsByClassName("error-warming").length){ //Pode não remover todos os erros se por acaso for adicionado outro erro no mesmo div
+            obj.parentElement.removeChild(obj.parentElement.getElementsByClassName("error-warming")[0]); //Pega o parente e remove o elemento filho dentro da lista
         }
     }
 }
