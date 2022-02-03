@@ -22,6 +22,11 @@ function usernameLenght(){
     return userUser.value.length > 3 && userUser.value.length < 12 ? true : false;
 }
 
+function userNameSurnameValid(obj){
+    obj.value.trim();
+    return obj.value !== "" ? true : false;
+}
+
 function validadeName(obj, errorText, validationBoolKey){  // divisão de função não deixaria mais simples? Complexidade de código fica reduzida, talvez vale repetição
     obj.value = obj.value.trim(); // Retira excesso de espaço
     if (obj.value === ""){
