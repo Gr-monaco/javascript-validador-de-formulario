@@ -18,14 +18,24 @@
             <li>Senha precisa ter entre 6 e 12 caracteres</li>
         </ul>
         <form name="form">
-            <label for="fname">Nome:</label>
-            <input type="text" id="fname" name="fname">
-            <label for="fsurname">Sobrenome:</label>
-            <input type="text" id="fsurname" name="fsurname">
-            <label for="fcpf">CPF:</label>
-            <input type="text" id="fcpf" name="fcpf">
-            <label for="fuser">Usuário:</label>
-            <input type="text" name="fuser" id="fuser">
+            
+            <div>
+                <label for="fname">Nome:</label>
+                <input type="text" id="fname" name="fname" onblur="validadeName()"> 
+            </div>
+            <div>
+                <label for="fsurname">Sobrenome:</label>
+                <input type="text" id="fsurname" name="fsurname">
+            </div>
+            <div>
+                <label for="fcpf">CPF:</label>
+                <input type="text" id="fcpf" name="fcpf">
+            </div>
+            <div>
+                <label for="fuser">Usuário:</label>
+                <input type="text" name="fuser" id="fuser">
+            </div>
+
             <input type="submit" value="Enviar">
         </form>
        
