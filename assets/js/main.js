@@ -6,11 +6,15 @@ const userUser = userForm["fuser"];
 
 let userNameValid = false;
 
-function validadeName(formName){
+function start(){
+    userName.addEventListener("blur", function() {validadeName("Nome deve estar preenchido.")});
+}
+
+function validadeName(errorText){
     userName.value = userName.value.trim(); // Retira excesso de espaço
     if (userName.value === ""){
         if (!(userName.parentElement.getElementsByClassName("error-warming").length)){ //verifica se não existe erros dentro do objeto
-            addErrorText(userName.parentElement, `${formName} deve ser preenchido`);
+            addErrorText(userName.parentElement, errorText);
         }
     }else{
         if(userName.parentElement.getElementsByClassName("error-warming").length){ //Pode não remover todos os erros se por acaso for adicionado outro erro no mesmo div
@@ -28,3 +32,5 @@ function addErrorText(obj, text){
     ul.appendChild(li);
     obj.appendChild(ul);
 }
+
+start()
