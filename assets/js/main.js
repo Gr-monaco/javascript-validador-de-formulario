@@ -22,9 +22,9 @@ function validadeName(){
 function addErrorText(obj, text){
     let ul = document.createElement("ul");
     ul.classList.add("error-warming")
-    let p = document.createElement("p");
+    let li = document.createElement("li");
 
-    p.innerText = text;
-    ul.appendChild(p);
+    li.innerText = text;
+    ul.appendChild(li);
     obj.appendChild(ul);
 }
