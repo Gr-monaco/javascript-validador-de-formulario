@@ -62,7 +62,18 @@ form button:active{
     background: blue;
 }
 
-.error-warming{
+.error-warming li{
     list-style-type:disc;
     color: red;
+    animation: fadein 0.75s 0.25s, scalein 0.25s;
+}
+
+@keyframes scalein {
+    from {opacity: 0;height: 0px;}
+    to   {opacity: 0;height: 32px;}
+}
+
+@keyframes fadein {
+    from { opacity: 0;}
+    to   { opacity: 1;}
 }
