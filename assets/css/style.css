@@ -65,15 +65,39 @@ form button:active{
 .error-warming li{
     list-style-type:disc;
     color: red;
-    animation: fadein 0.75s 0.25s, scalein 0.25s;
+    animation: apear 1s;
 }
 
-@keyframes scalein {
-    from {opacity: 0;height: 0px;}
-    to   {opacity: 0;height: 32px;}
+@keyframes apear {
+    0% {
+        opacity: 0; height: 0px;
+    }
+
+    50% {
+        opacity: 0; height: 32px;
+    }
+
+    100% {
+        opacity: 1; height: 32px;
+    }
 }
 
-@keyframes fadein {
-    from { opacity: 0;}
-    to   { opacity: 1;}
+
+/* Talvez seja melhor repensar como fazer os fadein e fadeout */
+.error-warming-end li {
+    animation: dissapear 1s;
+}
+
+@keyframes dissapear {
+    0% {
+        opacity: 1; height: 32px;
+    }
+
+    50% {
+        opacity: 0; height: 32px;
+    }
+
+    100% {
+        opacity: 0; height: 0px;
+    }
 }
