@@ -6,22 +6,31 @@ const userUser = userForm["fuser"];
 
 let userNameValid = false;
 
-function start(){
-    userName.addEventListener("blur", function() {validadeName(userName, "Nome deve estar preenchido.")});
-    userSurname.addEventListener("blur", function() {validadeName(userSurname, "Sobrenome deve estar preenchido.")})
+const valid = {
+    'userName' : false,
+    'userSurname' : false,
+    'userCpf' : false,
+    'userUser' : false
 }
 
-function validadeName(obj, errorText){
+function start(){
+    userName.addEventListener("blur", function() {validadeName(userName, "Nome deve estar preenchido.", 'userName')});
+    userSurname.addEventListener("blur", function() {validadeName(userSurname, "Sobrenome deve estar preenchido.", 'userSurname')})
+}
+
+function validadeName(obj, errorText, validationBoolKey){
     obj.value = obj.value.trim(); // Retira excesso de espaço
     if (obj.value === ""){
         if (!(obj.parentElement.getElementsByClassName("error-warming").length)){ //verifica se não existe erros dentro do objeto
             addErrorText(obj.parentElement, errorText);
+            valid[validationBoolKey] = false;
         }
     }else{
         if(obj.parentElement.getElementsByClassName("error-warming").length){ //Pode não remover todos os erros se por acaso for adicionado outro erro no mesmo div
             let objInQuestion = obj.parentElement.getElementsByClassName("error-warming")[0];
             objInQuestion.classList.add("error-warming-end"); // Adiciona a classe de animação final que vai ser removida
             objInQuestion.addEventListener("animationend", function() {removeError(objInQuestion)}) // adiciona evento de remoção
+            valid[validationBoolKey] = true;
         }
     }
 }
@@ -41,3 +50,4 @@ function addErrorText(obj, text){
 }
 
 start()
+valid['userName'] = true;
