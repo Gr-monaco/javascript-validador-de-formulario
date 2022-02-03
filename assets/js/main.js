@@ -19,9 +19,16 @@ function validadeName(obj, errorText){
         }
     }else{
         if(obj.parentElement.getElementsByClassName("error-warming").length){ //Pode não remover todos os erros se por acaso for adicionado outro erro no mesmo div
-            obj.parentElement.removeChild(obj.parentElement.getElementsByClassName("error-warming")[0]); //Pega o parente e remove o elemento filho dentro da lista
+            let objInQuestion = obj.parentElement.getElementsByClassName("error-warming")[0];
+            objInQuestion.classList.add("error-warming-end"); // Adiciona a classe de animação final que vai ser removida
+            objInQuestion.addEventListener("animationend", function() {removeError(objInQuestion)}) // adiciona evento de remoção
         }
     }
+}
+
+function removeError(obj){
+    obj.parentElement.removeChild(obj.parentElement.getElementsByClassName("error-warming")[0]);
+
 }
 
 function addErrorText(obj, text){
