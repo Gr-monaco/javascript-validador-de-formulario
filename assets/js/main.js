@@ -28,7 +28,6 @@ function validadeName(obj, errorText){
 
 function removeError(obj){
     obj.parentElement.removeChild(obj.parentElement.getElementsByClassName("error-warming")[0]);
-
 }
 
 function addErrorText(obj, text){
