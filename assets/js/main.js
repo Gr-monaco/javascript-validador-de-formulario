@@ -18,7 +18,11 @@ function start(){
     userSurname.addEventListener("blur", function() {validadeName(userSurname, "Sobrenome deve estar preenchido.", 'userSurname')})
 }
 
-function validadeName(obj, errorText, validationBoolKey){
+function usernameLenght(){
+    return userUser.value.length > 3 && userUser.value.length < 12 ? true : false;
+}
+
+function validadeName(obj, errorText, validationBoolKey){  // divisão de função não deixaria mais simples? Complexidade de código fica reduzida, talvez vale repetição
     obj.value = obj.value.trim(); // Retira excesso de espaço
     if (obj.value === ""){
         if (!(obj.parentElement.getElementsByClassName("error-warming").length)){ //verifica se não existe erros dentro do objeto
