@@ -4,7 +4,6 @@ const userSurname = userForm["fsurname"];
 const userCpf = userForm["fcpf"];
 const userUser = userForm["fuser"];
 
-let userNameValid = false;
 
 const valid = {
     'userName' : false,
@@ -14,22 +13,29 @@ const valid = {
 }
 
 function start(){
-    userName.addEventListener("blur", function() {validadeName(userName, "Nome deve estar preenchido.", 'userName')});
-    userSurname.addEventListener("blur", function() {validadeName(userSurname, "Sobrenome deve estar preenchido.", 'userSurname')})
+    userName.addEventListener("blur", function() {validadeName(userNameValid ,userName, "Nome deve estar preenchido.", 'userName')});
+    userSurname.addEventListener("blur", function() {validadeName(userSurnameValid ,userSurname, "Sobrenome deve estar preenchido.", 'userSurname')});
+    userUser.addEventListener("blur", function () {validadeName(usernameLenght, userUser, "Usuário deve ter entre 3 a 12 caractéres.", "userUser")});
 }
 
 function usernameLenght(){
+    userUser.value = userUser.value.trim();
+    userUser.value = userUser.value.replace(' ', '-');
     return userUser.value.length > 3 && userUser.value.length < 12 ? true : false;
 }
 
-function userNameSurnameValid(obj){
-    obj.value.trim();
-    return obj.value !== "" ? true : false;
+function userNameValid(){
+    userName.value = userName.value.trim();
+    return userName.value !== "" ? true : false;
 }
 
-function validadeName(obj, errorText, validationBoolKey){  // divisão de função não deixaria mais simples? Complexidade de código fica reduzida, talvez vale repetição
-    obj.value = obj.value.trim(); // Retira excesso de espaço
-    if (obj.value === ""){
+function userSurnameValid(){
+    userSurname.value = userSurname.value.trim();
+    return userSurname.value !== "" ? true : false;
+}
+
+function validadeName(validationFunction ,obj, errorText, validationBoolKey){  // divisão de função não deixaria mais simples? Complexidade de código fica reduzida, talvez vale repetição
+    if (!validationFunction()){
         if (!(obj.parentElement.getElementsByClassName("error-warming").length)){ //verifica se não existe erros dentro do objeto
             addErrorText(obj.parentElement, errorText);
             valid[validationBoolKey] = false;
