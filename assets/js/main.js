@@ -14,10 +14,10 @@ const valid = {
 }
 
 function start(){
-    userName.addEventListener("blur", function() {validadeName(userNameValid, userName, "Nome deve estar preenchido.", 'userName')});
-    userSurname.addEventListener("blur", function() {validadeName(userSurnameValid, userSurname, "Sobrenome deve estar preenchido.", 'userSurname')});
-    userUser.addEventListener("blur", function () {validadeName(usernameLenght, userUser, "Usuário deve ter entre 3 a 12 caractéres.", "userUser")});
-    userCpf.addEventListener("blur", function () {validadeName(validateCPF, userCpf, "Insira um CPF válido.", "userCpf")});
+    userName.addEventListener("blur", function() {validadeForm(userNameValid, userName, "Nome deve estar preenchido.", 'userName')});
+    userSurname.addEventListener("blur", function() {validadeForm(userSurnameValid, userSurname, "Sobrenome deve estar preenchido.", 'userSurname')});
+    userUser.addEventListener("blur", function () {validadeForm(usernameLenght, userUser, "Usuário deve ter entre 3 a 12 caractéres.", "userUser")});
+    userCpf.addEventListener("blur", function () {validadeForm(validateCPF, userCpf, "Insira um CPF válido.", "userCpf")});
 }
 
 function usernameLenght(){
@@ -68,7 +68,7 @@ function validateCPF() {
     return true;
 }
 
-function validadeName(validationFunction ,obj, errorText, validationBoolKey){  // divisão de função não deixaria mais simples? Complexidade de código fica reduzida, talvez vale repetição
+function validadeForm(validationFunction ,obj, errorText, validationBoolKey){  // divisão de função não deixaria mais simples? Complexidade de código fica reduzida, talvez vale repetição
     if (!validationFunction()){
         if (!(obj.parentElement.getElementsByClassName("error-warming").length)){ //verifica se não existe erros dentro do objeto
             addErrorText(obj.parentElement, errorText);
