@@ -9,7 +9,7 @@ const submitButton = userForm['fbutton'];
 const valid = {
     'userName' : false,
     'userSurname' : false,
-    'userCpf' : true,
+    'userCpf' : false,
     'userUser' : false
 }
 
