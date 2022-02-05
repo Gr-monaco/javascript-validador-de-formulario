@@ -3,12 +3,13 @@ const userName = userForm["fname"];
 const userSurname = userForm["fsurname"];
 const userCpf = userForm["fcpf"];
 const userUser = userForm["fuser"];
+const submitButton = userForm['fbutton'];
 
 
 const valid = {
     'userName' : false,
     'userSurname' : false,
-    'userCpf' : false,
+    'userCpf' : true,
     'userUser' : false
 }
 
@@ -45,9 +46,10 @@ function validadeName(validationFunction ,obj, errorText, validationBoolKey){  /
             let objInQuestion = obj.parentElement.getElementsByClassName("error-warming")[0];
             objInQuestion.classList.add("error-warming-end"); // Adiciona a classe de animação final que vai ser removida
             objInQuestion.addEventListener("animationend", function() {removeError(objInQuestion)}) // adiciona evento de remoção
-            valid[validationBoolKey] = true;
         }
+        valid[validationBoolKey] = true;
     }
+    enableButton();
 }
 
 function removeError(obj){
@@ -64,5 +66,16 @@ function addErrorText(obj, text){
     obj.appendChild(ul);
 }
 
+
+//https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/values
+//https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/every
+function enableButton(){
+    if(Object.values(valid).every(f => f)){
+        submitButton.disabled = false;
+    }
+    else {
+        submitButton.disabled = true;
+    }
+}
+
 start()
-valid['userName'] = true;
