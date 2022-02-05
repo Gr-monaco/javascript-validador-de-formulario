@@ -26,7 +26,7 @@ function start(){
 function usernameLenght(){
     userUser.value = userUser.value.trim();
     userUser.value = userUser.value.replace(' ', '-');
-    return userUser.value.length > 3 && userUser.value.length < 12 ? true : false;
+    return userUser.value.length >= 3 && userUser.value.length <= 12 ? true : false;
 }
 
 function userpasswordLenght(){
