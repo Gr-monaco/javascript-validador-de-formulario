@@ -3,6 +3,7 @@ const userName = userForm["fname"];
 const userSurname = userForm["fsurname"];
 const userCpf = userForm["fcpf"];
 const userUser = userForm["fuser"];
+const userPassword = userForm["fpassword"]
 const submitButton = userForm['fbutton'];
 
 
@@ -10,7 +11,8 @@ const valid = {
     'userName' : false,
     'userSurname' : false,
     'userCpf' : false,
-    'userUser' : false
+    'userUser' : false,
+    'userPassword' : false
 }
 
 function start(){
@@ -18,12 +20,18 @@ function start(){
     userSurname.addEventListener("blur", function() {validadeInput(userSurnameValid, userSurname, "Sobrenome deve estar preenchido.", 'userSurname')});
     userUser.addEventListener("blur", function () {validadeInput(usernameLenght, userUser, "Usuário deve ter entre 3 a 12 caractéres.", "userUser")});
     userCpf.addEventListener("blur", function () {validadeInput(validateCPF, userCpf, "Insira um CPF válido.", "userCpf")});
+    userPassword.addEventListener("blur", function() {validadeInput(userpasswordLenght, userPassword, "A senha deve conter entre 6 a 12 caractéres.", "userPassword")});
 }
 
 function usernameLenght(){
     userUser.value = userUser.value.trim();
     userUser.value = userUser.value.replace(' ', '-');
     return userUser.value.length > 3 && userUser.value.length < 12 ? true : false;
+}
+
+function userpasswordLenght(){
+    userPassword.value = userPassword.value.trim();
+    return userPassword.value.length >= 6 && userPassword.value.length <= 12 ? true : false;
 }
 
 function userNameValid(){
