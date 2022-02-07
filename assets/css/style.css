@@ -62,7 +62,7 @@ form button:active{
     background: blue;
 }
 
-.error-warming li{
+.error-warming{
     list-style-type:disc;
     color: red;
     animation: apear 1s;
@@ -70,34 +70,34 @@ form button:active{
 
 @keyframes apear {
     0% {
-        opacity: 0; height: 0px;
+        opacity: 0; height: 0px; margin: 0px;
     }
 
     50% {
-        opacity: 0; height: 32px;
+        opacity: 0; height: 32px; margin: 20.8px 0;
     }
 
     100% {
-        opacity: 1; height: 32px;
+        opacity: 1; height: 32px; margin: 20.8px 0;
     }
 }
 
 
 /* Talvez seja melhor repensar como fazer os fadein e fadeout */
-.error-warming-end li {
+.error-warming-end {
     animation: dissapear 1s;
 }
 
 @keyframes dissapear {
     0% {
-        opacity: 1; height: 32px;
+        opacity: 1; height: 31.188px; margin: 20.8px 0;
     }
 
     50% {
-        opacity: 0; height: 32px;
+        opacity: 0; height: 31.188px; margin: 20.8px 0;
     }
 
     100% {
-        opacity: 0; height: 0px;
+        opacity: 0; height: 0px; margin: 0px;
     }
 }
