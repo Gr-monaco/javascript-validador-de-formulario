@@ -48,7 +48,7 @@ function validateCPF() {
     let [pv1, pv2] = userCpf.value.split('-');
     pv1 = pv1.replace('.','').replace('.','');
     let array_pv1 = pv1.split('');
-    let array_pv2 = pv2.split('');
+    let array_pv2 = pv2;
     let array_rep = array_pv1.concat(array_pv2);
     if(array_rep.every(f => f === array_rep[0])) return false;
     
@@ -86,7 +86,7 @@ function validadeInput(validationFunction ,obj, errorText, validationBoolKey){  
         if(obj.parentElement.getElementsByClassName("error-warming").length){ //Pode não remover todos os erros se por acaso for adicionado outro erro no mesmo div
             let objInQuestion = obj.parentElement.getElementsByClassName("error-warming")[0];
             objInQuestion.classList.add("error-warming-end"); // Adiciona a classe de animação final que vai ser removida
-            objInQuestion.addEventListener("animationend", function() {removeError(objInQuestion)}) // adiciona evento de remoção
+            objInQuestion.addEventListener("animationend", function() {removeError(objInQuestion)}) // adiciona evento de remoção      
         }
         valid[validationBoolKey] = true;
     }
