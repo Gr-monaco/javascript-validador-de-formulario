@@ -51,35 +51,40 @@ function userRepeatPasswordValid(){
 }
 
 function validateCPF() {
-    let [pv1, pv2] = userCpf.value.split('-');
-    pv1 = pv1.replace('.','').replace('.','');
-    let array_pv1 = pv1.split('');
-    let array_pv2 = pv2;
-    let array_rep = array_pv1.concat(array_pv2);
-    if(array_rep.every(f => f === array_rep[0])) return false;
-    
+    /**
+         * Algoritmo utilizado: https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/
+         */
 
-    let p1 = userCpf.value.split('-')[0].replace('.', '').replace('.', '');
-    let array_p1 = p1.split('');
-    array_p1 = array_p1.reverse()
-    let soma = array_p1.map(f => parseInt(f)).reduce(f = (prev, current, index, array) => {
-        //console.log(array[index], index+2, prev, current*(index+2));
-        return prev += current * (index + 2);
-    },0);
+        let [pv1, array_pv2] = userCpf.value.split('-'); // Separa o CPF
+        pv1 = pv1.replaceAll('.', '') // Tira todos os pontos da primeira parte
+        let array_pv1 = pv1.split(''); // Divide todos os numeros em uma lista
 
-    let middle = (soma % 11 > 9) ? 0 : soma;
+        //Verifica se o CPF é uma repetição de numeros
+        let array_rep = array_pv1.concat(array_pv2);
+        if (array_rep.every(f => f === array_rep[0])) return false;
 
-    if (!(11 - middle%11 === parseInt(userCpf.value.split('-')[1][0]))) return false;
+        //O cpf é invertido para poder utilizar a função map mais facilmente
+        array_pv1 = array_pv1.reverse()
+        let soma = array_pv1.map(f => parseInt(f)).reduce((prev, current, index, array) => {
+            return prev += current * (index + 2);
+        }, 0);
 
-    array_p1.unshift(userCpf.value.split('-')[1][0])
-    soma = array_p1.map(f => parseInt(f)).reduce(f = (prev, current, index, array) => {
-        return prev += current * (index + 2);
-    },0);
+        let middle = (soma * 10 % 11 > 9) ? 0 : soma * 10 % 11;
+        //Verifica se o primeiro digito é valido
+        if (!(middle === parseInt(array_pv2[0]))) return false;
 
-    middle = (soma % 11 === 0) ? 0 : soma;
-    if (!(11 - middle%11 === parseInt(userCpf.value.split('-')[1][1]))) return false;
+        //Adiciona o primeiro digito da segunda parte do CPF na primeira parte
+        array_pv1.unshift(array_pv2[0])
+        soma = array_pv1.map(f => parseInt(f)).reduce((prev, current, index, array) => {
+            return prev += current * (index + 2);
+        }, 0);
 
-    return true;
+        middle = (soma * 10 % 11 > 9) ? 0 : soma * 10 % 11;
+        //Verifica se o segundo digito é valido
+        if (!(middle === parseInt(array_pv2[1]))) return false;
+
+
+        return true;
 }
 
 function validadeInput(validationFunction ,obj, errorText, validationBoolKey){  // divisão de função não deixaria mais simples? Complexidade de código fica reduzida, talvez vale repetição
